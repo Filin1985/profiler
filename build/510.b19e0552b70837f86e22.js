@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkprofiler=self.webpackChunkprofiler||[]).push([[510],{510:(e,r,i)=>{i.r(r),i.d(r,{default:()=>s});var n=i(893);const s=function(){return(0,n.jsx)("div",{children:"MAIN PAGE"},void 0)}}}]);
