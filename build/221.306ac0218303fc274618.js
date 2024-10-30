@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkprofiler=self.webpackChunkprofiler||[]).push([[221],{221:(r,e,t)=>{t.r(e),t.d(e,{default:()=>n});var u=t(893),i=t(327);const n=function(){var r=(0,i.$)("about").t;return(0,u.jsx)("div",{children:r("О сайте")},void 0)}}}]);
