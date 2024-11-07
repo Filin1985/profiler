@@ -5,7 +5,7 @@ module.exports = {
     },
     "extends": [
         "standard-with-typescript",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
     ],
     "overrides": [
         {
@@ -16,10 +16,11 @@ module.exports = {
                 ".eslintrc.{js,cjs}"
             ],
             "parserOptions": {
-                "sourceType": "script"
+                "sourceType": "script",
             }
         }
     ],
+    "ignorePatterns": [".eslintrc.js"],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
@@ -27,6 +28,7 @@ module.exports = {
     "plugins": [
         "react",
         "@typescript-eslint",
+        "i18next",
     ],
     "rules": {
         "react/jsx-indent": [2, 4],
