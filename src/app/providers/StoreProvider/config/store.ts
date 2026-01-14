@@ -3,6 +3,7 @@ import {StateSchema} from "./StateSchema";
 import {counterReducer} from "entities/Counter";
 import {userReducer} from "entities/User";
 import {loginReducer} from "features/AuthByUsername";
+import {useDispatch} from "react-redux";
 
 export function createReduxStore(initialState?: StateSchema) {
     const rootReducers: ReducersMapObject<StateSchema> = {
@@ -17,3 +18,7 @@ export function createReduxStore(initialState?: StateSchema) {
         preloadedState: initialState,
     });
 }
+
+export type AppStore = ReturnType<typeof createReduxStore>;
+type AppDispatch = AppStore["dispatch"];
+export const useAppDispatch = () => useDispatch<AppDispatch>();

@@ -1,0 +1,28 @@
+import React from "react"
+import cls from "./Text.module.scss"
+import {classNames} from "shared/lib/classNames/classNames"
+import {useTranslation} from "react-i18next"
+
+export enum TextTheme {
+  PRIMARY = "primary",
+  ERROR = "error",
+}
+
+interface TextProps {
+  className?: string
+  title?: string
+  text?: string
+  theme?: TextTheme
+}
+
+export const Text = (props: TextProps) => {
+  const {className, title, text, theme = TextTheme.PRIMARY} = props
+  const {t} = useTranslation()
+
+  return (
+    <div className={classNames(cls.Text, {[cls[theme]]: true}, [className])}>
+      {title && <h3 className={cls.title}>{title}</h3>}
+      {text && <p className={cls.text}>{text}</p>}
+    </div>
+  )
+}

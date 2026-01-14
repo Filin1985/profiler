@@ -7,7 +7,7 @@ interface LoginByUsernameProps {
     password: string;
 }
 
-const loginByUsername = createAsyncThunk<User, LoginByUsernameProps>("login/loginByUsername", async ({username, password}, {rejectWithValue}) => {
+export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps>("login/loginByUsername", async ({username, password}, {rejectWithValue}) => {
     try {
         const response = await axios.post("http://localhost:8000/login", {username, password});
         if (!response.data) {
@@ -16,6 +16,6 @@ const loginByUsername = createAsyncThunk<User, LoginByUsernameProps>("login/logi
         return response.data;
     } catch (error) {
         console.log(error);
-        return rejectWithValue('Ошибка при логине');
+        return rejectWithValue('Вы ввели неверный логин или пароль');
     }
 });
