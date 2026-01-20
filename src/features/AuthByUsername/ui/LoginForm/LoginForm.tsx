@@ -11,13 +11,13 @@ import {loginByUsername} from "features/AuthByUsername/model/services/loginByUse
 import {useAppDispatch} from "app/providers/StoreProvider"
 import {Text, TextTheme} from "shared/ui/Text/Text"
 
-interface LoginFormProps {
+export interface LoginFormProps {
   className?: string
   children?: React.ReactNode
   isOpen?: boolean
 }
 
-export const LoginForm = memo((props: LoginFormProps) => {
+const LoginForm = memo((props: LoginFormProps) => {
   const {className} = props
   const {t} = useTranslation()
   const dispatch = useAppDispatch()
@@ -71,3 +71,5 @@ export const LoginForm = memo((props: LoginFormProps) => {
     </div>
   )
 })
+
+export default LoginForm
