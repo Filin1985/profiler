@@ -18,12 +18,19 @@ import {getLoginUsername} from "features/AuthByUsername/model/selectors/getLogin
 import {getLoginPassword} from "features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword"
 import {getLoginError} from "features/AuthByUsername/model/selectors/getLoginError/getLoginError"
 import {getLoginIsLoading} from "features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading"
-import {DynamicModuleLoader} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader"
+import {
+  DynamicModuleLoader,
+  ReducersList,
+} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader"
 
 export interface LoginFormProps {
   className?: string
   children?: React.ReactNode
   isOpen?: boolean
+}
+
+const initialReducers: ReducersList = {
+  loginForm: loginReducer,
 }
 
 const LoginForm = memo((props: LoginFormProps) => {
@@ -40,14 +47,14 @@ const LoginForm = memo((props: LoginFormProps) => {
     (value: string) => {
       dispatch(loginActions.setUsername(value))
     },
-    [dispatch]
+    [dispatch],
   )
 
   const onChangePassword = useCallback(
     (value: string) => {
       dispatch(loginActions.setPassword(value))
     },
-    [dispatch]
+    [dispatch],
   )
 
   const onLoginClick = useCallback(() => {
@@ -55,11 +62,7 @@ const LoginForm = memo((props: LoginFormProps) => {
   }, [dispatch, username, password])
 
   return (
-    <DynamicModuleLoader
-      name="loginForm"
-      reducer={loginReducer}
-      removeAfterUnmount
-    >
+    <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
       <div className={classNames(cls.LoginForm, {}, [className])}>
         <Text title={t("Форма авторизации")} />
         {error && <Text theme={TextTheme.ERROR} text={error} />}
