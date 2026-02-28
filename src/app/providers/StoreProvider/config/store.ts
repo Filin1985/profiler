@@ -1,30 +1,34 @@
-import {configureStore, ReducersMapObject} from "@reduxjs/toolkit";
-import {StateSchema} from "./StateSchema";
-import {counterReducer} from "entities/Counter";
-import {userReducer} from "entities/User";
-import {useDispatch} from "react-redux";
-import {createReducerManager} from "./reducerManager";
+import {configureStore, DeepPartial, ReducersMapObject} from "@reduxjs/toolkit"
+import {StateSchema} from "./StateSchema"
+import {counterReducer} from "entities/Counter"
+import {userReducer} from "entities/User"
+import {useDispatch} from "react-redux"
+import {createReducerManager} from "./reducerManager"
 
-export function createReduxStore(initialState?: StateSchema) {
-    const rootReducers: ReducersMapObject<StateSchema> = {
-        counter: counterReducer,
-        user: userReducer
-    };
+export function createReduxStore(
+  initialState?: StateSchema,
+  asyncReducers?: DeepPartial<StateSchema>,
+) {
+  const rootReducers: ReducersMapObject<StateSchema> = {
+    ...(asyncReducers as ReducersMapObject<StateSchema>),
+    counter: counterReducer,
+    user: userReducer,
+  }
 
-    const reducerManager = createReducerManager(rootReducers);
+  const reducerManager = createReducerManager(rootReducers)
 
-    const store = configureStore<StateSchema>({
-        reducer: reducerManager.reduce,
-        devTools: __IS_DEV__,
-        preloadedState: initialState,
-    });
+  const store = configureStore<StateSchema>({
+    reducer: reducerManager.reduce,
+    devTools: __IS_DEV__,
+    preloadedState: initialState,
+  })
 
-    // @ts-ignore
-    store.reducerManager = reducerManager;
+  // @ts-ignore
+  store.reducerManager = reducerManager
 
-    return store;
+  return store
 }
 
-export type AppStore = ReturnType<typeof createReduxStore>;
-type AppDispatch = AppStore["dispatch"];
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+export type AppStore = ReturnType<typeof createReduxStore>
+type AppDispatch = AppStore["dispatch"]
+export const useAppDispatch = () => useDispatch<AppDispatch>()
