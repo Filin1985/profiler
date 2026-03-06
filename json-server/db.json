@@ -25,5 +25,14 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "first": "Me",
+    "lastname": "AgainMe",
+    "age": "30",
+    "currency": "RUB",
+    "country": "Utopia",
+    "city": "Dream",
+    "username": "admin",
+    "avatar": "https://gravatar.com/avatar/0612b4f216dd740c88effef2a2375cce?s=400&d=robohash&r=x"
+  }
 }
